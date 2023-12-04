@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 3 dic 2023 12:28:04 by Hibernate Tools 5.6.15.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="jardineria" name="org.iesvdm.jardineria.modelo.Producto" optimistic-lock="none" table="producto">
+        <id name="codigoProducto" type="string">
+            <column length="15" name="codigo_producto"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="org.iesvdm.jardineria.modelo.GamaProducto" fetch="select" name="gamaProducto">
+            <column length="50" name="gama" not-null="true"/>
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column length="70" name="nombre" not-null="true"/>
+        </property>
+        <property name="dimensiones" type="string">
+            <column length="25" name="dimensiones"/>
+        </property>
+        <property name="proveedor" type="string">
+            <column length="50" name="proveedor"/>
+        </property>
+        <property name="descripcion" type="string">
+            <column length="65535" name="descripcion"/>
+        </property>
+        <property name="cantidadEnStock" type="short">
+            <column name="cantidad_en_stock" not-null="true"/>
+        </property>
+        <property name="precioVenta" type="big_decimal">
+            <column name="precio_venta" not-null="true" precision="15"/>
+        </property>
+        <property name="precioProveedor" type="big_decimal">
+            <column name="precio_proveedor" precision="15"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="detallePedidos" table="detalle_pedido">
+            <key>
+                <column length="15" name="codigo_producto" not-null="true"/>
+            </key>
+            <one-to-many class="org.iesvdm.jardineria.modelo.DetallePedido"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 3 dic 2023 12:28:04 by Hibernate Tools 5.6.15.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="jardineria" name="org.iesvdm.jardineria.modelo.Oficina" optimistic-lock="none" table="oficina">
+        <id name="codigoOficina" type="string">
+            <column length="10" name="codigo_oficina"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="ciudad" type="string">
+            <column length="30" name="ciudad" not-null="true"/>
+        </property>
+        <property name="pais" type="string">
+            <column length="50" name="pais" not-null="true"/>
+        </property>
+        <property name="region" type="string">
+            <column length="50" name="region"/>
+        </property>
+        <property name="codigoPostal" type="string">
+            <column length="10" name="codigo_postal" not-null="true"/>
+        </property>
+        <property name="telefono" type="string">
+            <column length="20" name="telefono" not-null="true"/>
+        </property>
+        <property name="lineaDireccion1" type="string">
+            <column length="50" name="linea_direccion1" not-null="true"/>
+        </property>
+        <property name="lineaDireccion2" type="string">
+            <column length="50" name="linea_direccion2"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="empleados" table="empleado">
+            <key>
+                <column length="10" name="codigo_oficina" not-null="true"/>
+            </key>
+            <one-to-many class="org.iesvdm.jardineria.modelo.Empleado"/>
+        </set>
+    </class>
+</hibernate-mapping>

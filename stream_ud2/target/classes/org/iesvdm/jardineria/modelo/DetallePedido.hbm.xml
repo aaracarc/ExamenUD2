@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 3 dic 2023 12:28:04 by Hibernate Tools 5.6.15.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="jardineria" name="org.iesvdm.jardineria.modelo.DetallePedido" optimistic-lock="none" table="detalle_pedido">
+        <composite-id class="org.iesvdm.jardineria.modelo.DetallePedidoId" name="id">
+            <key-property name="codigoPedido" type="int">
+                <column name="codigo_pedido"/>
+            </key-property>
+            <key-property name="codigoProducto" type="string">
+                <column length="15" name="codigo_producto"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="org.iesvdm.jardineria.modelo.Pedido" fetch="select" insert="false" name="pedido" update="false">
+            <column name="codigo_pedido" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="org.iesvdm.jardineria.modelo.Producto" fetch="select" insert="false" name="producto" update="false">
+            <column length="15" name="codigo_producto" not-null="true"/>
+        </many-to-one>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true"/>
+        </property>
+        <property name="precioUnidad" type="big_decimal">
+            <column name="precio_unidad" not-null="true" precision="15"/>
+        </property>
+        <property name="numeroLinea" type="short">
+            <column name="numero_linea" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
